@@ -1,0 +1,62 @@
+{
+  "manifest_version": "0.3",
+  "name": "arxiv-hound",
+  "display_name": "Arxiv Hound",
+  "version": "0.0.1",
+  "description": "Tiny arXiv MCP server: search, fetch, cite.",
+  "author": {
+    "name": "kanafm"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kanafm/arxiv-hound"
+  },
+  "homepage": "https://github.com/kanafm/arxiv-hound",
+  "support": "https://github.com/kanafm/arxiv-hound/issues",
+  "license": "MIT",
+  "keywords": [
+    "arxiv",
+    "research",
+    "papers",
+    "mcp",
+    "semantic-scholar",
+    "bibtex"
+  ],
+  "server": {
+    "type": "node",
+    "entry_point": "dist/cli.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/dist/cli.js",
+        "serve"
+      ],
+      "env": {
+        "ARXIV_HOUND_CACHE": "${user_config.cache_path}",
+        "ARXIV_HOUND_S2_KEY": "${user_config.s2_api_key}"
+      }
+    }
+  },
+  "compatibility": {
+    "platforms": ["darwin", "linux", "win32"],
+    "runtimes": {
+      "node": ">=22"
+    }
+  },
+  "user_config": {
+    "cache_path": {
+      "type": "directory",
+      "title": "Paper cache directory",
+      "description": "Where downloaded paper markdown is cached locally.",
+      "required": false,
+      "default": "${HOME}/.cache/arxiv-hound"
+    },
+    "s2_api_key": {
+      "type": "string",
+      "title": "Semantic Scholar API key (optional)",
+      "description": "Raises Semantic Scholar rate limits for the search/similar/citations tools. Request a free key at semanticscholar.org/product/api.",
+      "required": false,
+      "sensitive": true
+    }
+  }
+}

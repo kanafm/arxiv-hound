@@ -1,0 +1,40 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "io.github.kanafm/arxiv-hound",
+  "version": "0.0.1",
+  "description": "Tiny arXiv MCP server: search, fetch, cite. Pairs arXiv with Semantic Scholar for TLDRs, similar papers, and citation graphs.",
+  "repository": {
+    "url": "https://github.com/kanafm/arxiv-hound",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "arxiv-hound",
+      "version": "0.0.1",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "runtimeArguments": [
+        { "type": "positional", "value": "arxiv-hound" },
+        { "type": "positional", "value": "serve" }
+      ],
+      "environmentVariables": [
+        {
+          "name": "ARXIV_HOUND_CACHE",
+          "description": "Override the cache directory for paper markdown.",
+          "isRequired": false,
+          "isSecret": false
+        },
+        {
+          "name": "ARXIV_HOUND_S2_KEY",
+          "description": "Optional Semantic Scholar API key for higher rate limits.",
+          "isRequired": false,
+          "isSecret": true
+        }
+      ]
+    }
+  ]
+}
